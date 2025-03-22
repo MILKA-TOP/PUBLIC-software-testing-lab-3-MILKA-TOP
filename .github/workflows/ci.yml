@@ -37,6 +37,13 @@ jobs:
           name: jacoco-test-report
           path: build/reports/jacoco/test
 
+      - name: SpotLess reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotbugs-test-report
+          path: build/reports/spotbugs
+
       - name: Allure reports
         if: always()
         uses: actions/upload-artifact@v4

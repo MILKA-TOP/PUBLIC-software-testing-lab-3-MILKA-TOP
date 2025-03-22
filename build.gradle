@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id("io.qameta.allure") version "2.12.0"
+    id("com.github.spotbugs") version "6.1.7"
 }
 
 group = 'org.usvm'
@@ -22,6 +23,7 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured:5.5.1")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation("org.mockito:mockito-core:5.15.2")
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
 
 }
 
@@ -44,5 +46,16 @@ jacocoTestReport {
     reports {
         xml.required = true
         html.required = true
+    }
+}
+
+spotbugs {
+    toolVersion = '4.9.3'
+}
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
     }
 }
