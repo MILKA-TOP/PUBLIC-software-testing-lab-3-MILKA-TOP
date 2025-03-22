@@ -43,3 +43,12 @@ jobs:
         with:
           name: allure-report
           path: build/allure-results
+
+      - name: Publish Allure reports
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/allure-report
+          publish_branch: gh-pages
+          keep_files: true
