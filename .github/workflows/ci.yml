@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Run tests with Gradle
-        run: ./gradlew test
+        run: ./gradlew clean test jacocoTestReport
 
       - name: Test reports
         if: always()
@@ -29,3 +29,10 @@ jobs:
         with:
           name: html-test-report
           path: build/reports/tests/test
+
+      - name: Jacoco reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-test-report
+          path: build/reports/jacoco/test
