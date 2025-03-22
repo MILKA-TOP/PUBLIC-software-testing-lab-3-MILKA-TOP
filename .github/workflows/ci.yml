@@ -27,5 +27,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: target/reports
+          name: html-test-report
+          path: build/reports/tests/test
