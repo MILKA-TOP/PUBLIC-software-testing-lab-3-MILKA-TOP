@@ -44,6 +44,13 @@ jobs:
           name: allure-report
           path: build/allure-results
 
+      - name: Generate Allure report
+        if: always()
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz
+          tar -xvzf allure-2.33.0.tgz
+          ./allure-2.33.0/bin/allure generate build/allure-results --clean -o build/allure-report
+
       - name: Publish Allure reports
         if: always()
         uses: peaceiris/actions-gh-pages@v4
